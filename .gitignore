@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Generated run data. The directory structure is kept via .gitkeep files;
+# artefacts, logs, vectors and session databases are per-run and not shared.
+data/artifacts/*
+data/logs/*
+data/vectors/*
+data/sessions/*
+data/uploads/*
+!data/**/.gitkeep
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+.pytest_cache/
+
+.env

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pip list)",
+      "Bash(python -c \"import agents; print\\('agents ok', getattr\\(agents,'__version__','?'\\)\\)\")",
+      "Bash(ls -la \"C:\\\\Users\\\\anshi\\\\.claude\\\\projects\\\\c--Users-anshi-Downloads-AgenticAI-Retrieval-Project-main\\\\memory\\\\\" 2>&1)",
+      "Read(//c/Users/anshi/.claude/projects/c--Users-anshi-Downloads-AgenticAI-Retrieval-Project-main/**)",
+      "Bash(python -)",
+      "Bash(python -m pip install -q pydantic-settings python-dotenv feedparser pypdf rich)",
+      "Bash(python -c ' *)",
+      "Bash(ATHENA_MOCK_MODE=true python -m athena.cli agents)",
+      "Bash(ATHENA_MOCK_MODE=true python -m athena.cli --session smoke study \"What limits the expressive power of message passing graph neural networks?\" --yes)"
+    ]
+  }
+}

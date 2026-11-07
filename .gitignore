@@ -26,3 +26,5 @@ data/uploads/*
 .pytest_cache/
 
 .env
+
+.claude/

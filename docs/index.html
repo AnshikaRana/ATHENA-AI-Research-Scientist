@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Athena · AI Research Scientist</title>
+  <meta name="description" content="Athena turns a research question into an evidence-grounded research dossier with an eight-stage multi-agent pipeline: literature review, RAG synthesis, gap analysis, hypotheses, powered experiment design, verified citations and scientific writing.">
+  <meta property="og:title" content="Athena · AI Research Scientist">
+  <meta property="og:description" content="Eight specialist agents turn a research question into an evidence-grounded dossier, with deterministic citation guardrails and human-in-the-loop approval.">
+  <meta name="theme-color" content="#0d1220">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3 27 8.5v11C27 25 22 29 16 29S5 25 5 19.5v-11Z' fill='%230d1220' stroke='%23d4ae55' stroke-width='2'/%3E%3Ccircle cx='12' cy='15' r='3' fill='%23d4ae55'/%3E%3Ccircle cx='20' cy='15' r='3' fill='%23d4ae55'/%3E%3Cpath d='M16 18.5 14.4 21.5h3.2Z' fill='%23d4ae55'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/athena.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#study" aria-label="Athena home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 27 8.5v11C27 25 22 29 16 29S5 25 5 19.5v-11Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="15" r="3" fill="currentColor"/><circle cx="20" cy="15" r="3" fill="currentColor"/><path d="M16 18.5 14.4 21.5h3.2Z" fill="currentColor"/></svg>
+      <span><span class="name">ATHENA</span><span class="tag">AI Research Scientist</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#study" data-view="study">Study</a>
+      <a href="#history" data-view="history">History</a>
+      <a href="#memory" data-view="memory">Memory</a>
+      <a href="#agents" data-view="agents">Agents</a>
+      <a href="#about" data-view="about">About</a>
+    </nav>
+    <span class="spacer"></span>
+    <button class="mode-pill" id="mode-pill" title="Open settings"><span class="dot"></span><span id="mode-label">Offline demo</span></button>
+    <a class="icon-btn" id="repo-link" href="https://github.com/AnshikaRana/ATHENA-AI-Research-Scientist" target="_blank" rel="noopener" title="Source on GitHub" aria-label="Source on GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+    </a>
+    <button class="icon-btn" id="theme-btn" title="Toggle light / dark" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+    <button class="icon-btn" id="settings-btn" title="Settings" aria-label="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <!-- ============================== STUDY ============================== -->
+    <section class="view" id="view-study">
+      <div class="hero">
+        <h1>From research question to <em>evidence-grounded</em> dossier.</h1>
+        <p>Eight specialist agents plan the study, search arXiv, OpenAlex and Crossref, synthesise the evidence with retrieval, find the gaps, propose falsifiable hypotheses, design a powered experiment, verify every citation and write the report — with you approving anything consequential.</p>
+      </div>
+
+      <div class="card composer">
+        <label for="question" class="small muted">Research question</label>
+        <textarea id="question" placeholder="e.g. Do vision transformers outperform CNNs on small (<10k image) datasets without pretraining?"></textarea>
+        <div class="examples" id="examples"></div>
+        <div class="drop" id="dropzone">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21.4 11.1 12.2 20.3a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg>
+          <span>Attach PDFs, figures, audio or datasets (drop here or</span>
+          <label class="btn sm ghost" style="margin:0">browse<input id="file-input" type="file" multiple hidden accept=".pdf,.png,.jpg,.jpeg,.gif,.webp,.mp3,.wav,.m4a,.mp4,.mpeg,.mpga,.webm,.csv,.tsv,.tab,.json,.xlsx,.xls"></label>
+          <span>)</span>
+          <span id="file-chips" class="row"></span>
+        </div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Evidence source">
+            <button id="src-web" class="on" type="button" title="Search arXiv, OpenAlex and Crossref">Web literature</button>
+            <button id="src-docs" type="button" title="Confine the study to your attached PDFs">My documents only</button>
+          </div>
+          <label class="check small" title="Pause before saving the dossier and before costly deep sweeps"><input type="checkbox" id="approval-toggle" checked> Human approval</label>
+          <span class="spacer" style="flex:1"></span>
+          <button class="btn" id="stop-btn" type="button" disabled title="Stop after the current stage">Stop</button>
+          <button class="btn primary" id="run-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Run study
+          </button>
+        </div>
+        <div id="composer-notice"></div>
+      </div>
+
+      <div class="workspace">
+        <aside class="side">
+          <div class="card card-pad">
+            <h3>Pipeline</h3>
+            <ol class="stages" id="stages"></ol>
+          </div>
+          <div class="card card-pad">
+            <h3>Run</h3>
+            <div class="metrics" id="metrics"></div>
+            <div class="small muted" id="run-meta" style="margin-top:10px"></div>
+          </div>
+          <div class="card card-pad">
+            <h3>Activity</h3>
+            <div class="feed" id="feed"><div class="muted small">Tool calls, guardrails and approvals appear here as the run progresses.</div></div>
+          </div>
+        </aside>
+
+        <section class="card results" id="results">
+          <div class="tabs" id="tabs" role="tablist"></div>
+          <div class="toolbar no-print hidden" id="toolbar">
+            <button class="btn sm" data-export="md">Download report (.md)</button>
+            <button class="btn sm" data-export="print">Print / PDF</button>
+            <button class="btn sm" data-export="bib">BibTeX</button>
+            <button class="btn sm" data-export="manifest">Run manifest</button>
+            <button class="btn sm" data-export="trace">Trace log</button>
+            <button class="btn sm" data-export="context">Full context</button>
+          </div>
+          <div class="tabpanel" id="tabpanel">
+            <div class="empty">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 27 8.5v11C27 25 22 29 16 29S5 25 5 19.5v-11Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="15" r="3" fill="currentColor"/><circle cx="20" cy="15" r="3" fill="currentColor"/></svg>
+              <div>Ask a research question to begin. Results appear here stage by stage.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ============================== HISTORY ============================== -->
+    <section class="view hidden" id="view-history">
+      <div class="page-head">
+        <div><h1>History</h1><div class="muted">Every run is saved in this browser, including runs paused for approval.</div></div>
+        <div class="row"><button class="btn sm" id="import-run-btn">Import run</button><input type="file" id="import-run-input" accept=".json" hidden></div>
+      </div>
+      <div class="card" id="history-list"></div>
+      <h2 style="margin-top:28px;font-size:22px">Saved artefacts</h2>
+      <p class="muted small" style="margin-top:-4px">Dossiers the Scientific Writer saved after your approval (with provenance).</p>
+      <div class="card" id="artifact-list"></div>
+    </section>
+
+    <!-- ============================== MEMORY ============================== -->
+    <section class="view hidden" id="view-memory">
+      <div class="page-head">
+        <div><h1>Long-term memory</h1><div class="muted">Durable findings that outlive a single run. The Principal Investigator recalls them at the start of every study.</div></div>
+        <div class="row">
+          <button class="btn sm" id="mem-export">Export</button>
+          <button class="btn sm" id="mem-import-btn">Import</button><input type="file" id="mem-import" accept=".json" hidden>
+          <button class="btn sm danger" id="mem-clear">Clear all</button>
+        </div>
+      </div>
+      <div class="metrics" id="mem-stats" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));margin-bottom:16px"></div>
+      <div class="card card-pad" style="margin-bottom:16px">
+        <div class="row"><input type="text" id="mem-query" placeholder="Semantic recall, e.g. “sample size for small datasets”" style="flex:1;min-width:220px"><button class="btn" id="mem-search">Recall</button><button class="btn ghost" id="mem-recent">Show recent</button></div>
+        <div class="row" style="margin-top:12px">
+          <select id="mem-kind" style="width:auto"><option>finding</option><option>question</option><option>preference</option><option>critique</option></select>
+          <input type="text" id="mem-topic" placeholder="Topic" style="width:200px">
+          <input type="text" id="mem-content" placeholder="Add a memory manually" style="flex:1;min-width:200px">
+          <button class="btn" id="mem-add">Remember</button>
+        </div>
+      </div>
+      <div class="card" id="mem-list"></div>
+    </section>
+
+    <!-- ============================== AGENTS ============================== -->
+    <section class="view hidden" id="view-agents">
+      <div class="page-head"><div><h1>The research team</h1><div class="muted">Eight agents, each with one job, its own tools, temperature and guardrails.</div></div></div>
+      <div class="card table-wrap"><table class="data" id="agents-table"></table></div>
+      <h2 style="margin-top:28px;font-size:22px">Tools</h2>
+      <div class="card table-wrap"><table class="data" id="tools-table"></table></div>
+    </section>
+
+    <!-- ============================== ABOUT ============================== -->
+    <section class="view hidden" id="view-about">
+      <div class="page-head"><div><h1>About Athena</h1><div class="muted">A multi-agent AI research scientist, originally built on the OpenAI Agents SDK.</div></div></div>
+      <div class="card card-pad prose" style="max-width:none;margin-bottom:18px">
+        <p>Athena converts research questions into evidence-grounded research dossiers using an eight-stage agent pipeline for literature review, RAG-based synthesis, research-gap discovery, hypothesis generation, statistical experiment design, citation verification and scientific writing, with deterministic citation guardrails and human-in-the-loop approval.</p>
+        <div class="pipeline-diagram" style="margin-top:16px">
+          <div class="st"><b>Plan</b><span>Principal Investigator sharpens the question, recalls memory, sets scope.</span></div>
+          <div class="st"><b>Literature</b><span>Parallel search across arXiv, OpenAlex and Crossref; dedup and curation.</span></div>
+          <div class="st"><b>Synthesis</b><span>RAG over the corpus; every claim cites a retrieved paper.</span></div>
+          <div class="st"><b>Gap analysis</b><span>Classifies gaps by type, severity and tractability.</span></div>
+          <div class="st"><b>Hypotheses</b><span>Divergent step (temperature 0.8): falsifiable, scored, ranked.</span></div>
+          <div class="st"><b>Experiment</b><span>Protocol with a sample size computed by power analysis.</span></div>
+          <div class="st"><b>Citations</b><span>Deterministic, verified bibliography in APA, IEEE, MLA or Nature.</span></div>
+          <div class="st"><b>Report</b><span>Scientific Writer assembles the dossier; saving it needs your approval.</span></div>
+        </div>
+      </div>
+      <div class="feature-grid">
+        <div class="card feature"><h3>Deterministic pipeline</h3><p>The order of stages is code, not a model's choice — you cannot synthesise evidence you have not retrieved. The judgement inside each stage is the model's.</p></div>
+        <div class="card feature"><h3>Citation guardrail</h3><p>Every paper_id an agent cites is checked against the retrieved corpus. Invented ids are rejected with certainty, and the stage is re-asked with the bad ids named.</p></div>
+        <div class="card feature"><h3>Human in the loop</h3><p>Saving the dossier always pauses for approval, and deep sweeps above 30 results pause too. Defer a decision and the run is checkpointed so you can resume it later from History.</p></div>
+        <div class="card feature"><h3>Three memory tiers</h3><p>Conversation memory within a run, working memory (the shared research context) and long-term memory that persists across sessions and is recalled at the start of every study.</p></div>
+        <div class="card feature"><h3>Computed, not guessed</h3><p>Sample sizes come from a power-analysis tool; other numbers from a sandboxed Python runtime; dataset statistics (Welch's t, Cohen's d, correlations) are computed exactly.</p></div>
+        <div class="card feature"><h3>Document-grounded mode</h3><p>Confine a study to your own PDFs: web search is switched off and every stage reads the full source text, quoting its numbers exactly.</p></div>
+        <div class="card feature"><h3>Multi-modal input</h3><p>Attach PDFs (parsed locally), figures (vision model), recorded talks (Whisper) and CSV / Excel datasets.</p></div>
+        <div class="card feature"><h3>Cost control</h3><p>Every model call is metered by model rate; no new stage starts once the run's spending cap is reached.</p></div>
+      </div>
+      <div class="card card-pad prose" style="max-width:none;margin-top:18px">
+        <h2 style="margin-top:0">This browser edition</h2>
+        <ul>
+          <li><b>Runs entirely in your browser.</b> GitHub Pages only serves static files, so the Python backend is re-implemented in JavaScript. Model calls go straight from your browser to <code>api.openai.com</code> with your own API key; nothing passes through any other server.</li>
+          <li><b>Your key stays local.</b> It is kept in this browser's session storage (or local storage if you tick “remember”). Never commit an API key to the repository.</li>
+          <li><b>Offline demo mode.</b> Without a key, deterministic stand-in agents run the full pipeline. Literature search, retrieval, citation verification, power analysis and approvals are all real — only the writing is templated.</li>
+          <li><b>Storage.</b> Run history, checkpoints, saved dossiers and long-term memory live in IndexedDB, the browser counterpart of the original SQLite databases.</li>
+          <li><b>Libraries.</b> pdf.js for PDF parsing, Pyodide for the Python analysis sandbox, SheetJS for Excel files and marked + DOMPurify for rendering — each loaded from a CDN only when needed.</li>
+        </ul>
+        <p class="muted small">Source code: <a id="about-repo" href="https://github.com/AnshikaRana/ATHENA-AI-Research-Scientist" target="_blank" rel="noopener">github.com/AnshikaRana/ATHENA-AI-Research-Scientist</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">Athena · AI Research Scientist · browser edition · <a href="https://github.com/AnshikaRana/ATHENA-AI-Research-Scientist" target="_blank" rel="noopener">GitHub</a></footer>
+
+  <!-- ============================== SETTINGS ============================== -->
+  <dialog id="settings-dialog">
+    <form method="dialog" id="settings-form">
+      <div class="dlg-head"><div><h2>Settings</h2><div class="muted small">Stored only in this browser.</div></div><button class="icon-btn" value="cancel" aria-label="Close">✕</button></div>
+      <div class="dlg-body">
+        <fieldset>
+          <legend>Model access</legend>
+          <label class="field">OpenAI API key
+            <input type="password" id="set-key" placeholder="sk-..." autocomplete="off" spellcheck="false">
+          </label>
+          <label class="check"><input type="checkbox" id="set-remember"> Remember the key on this device (otherwise it is forgotten when the tab closes)</label>
+          <label class="check"><input type="checkbox" id="set-mock"> Force offline demo mode (no API calls, even with a key)</label>
+          <div class="notice small">Requests go directly from your browser to api.openai.com. Use a key with a spending limit, and never paste it into a shared computer.</div>
+        </fieldset>
+        <fieldset>
+          <legend>Models</legend>
+          <div class="grid-2">
+            <label class="field">Fast model (routing, extraction)<input type="text" id="set-fast"></label>
+            <label class="field">Reasoning model (synthesis, hypotheses, writing)<input type="text" id="set-reasoning"></label>
+            <label class="field">Vision model (figures)<input type="text" id="set-vision"></label>
+            <label class="field">Transcription model (audio)<input type="text" id="set-transcription"></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Budget guardrails</legend>
+          <div class="grid-3">
+            <label class="field">Run spending cap (USD)<input type="number" id="set-usd" min="0" step="0.1"></label>
+            <label class="field">Max turns per agent<input type="number" id="set-turns" min="2" max="40"></label>
+            <label class="field">Papers per source<input type="number" id="set-per-source" min="1" max="15"></label>
+            <label class="field">Corpus ceiling<input type="number" id="set-corpus" min="3" max="60"></label>
+            <label class="field">HTTP timeout (s)<input type="number" id="set-timeout" min="5" max="120"></label>
+            <label class="field">Tool retries<input type="number" id="set-retries" min="1" max="6"></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Behaviour</legend>
+          <div class="grid-2">
+            <label class="field">Citation style<select id="set-style"><option>APA</option><option>IEEE</option><option>MLA</option><option>Nature</option></select></label>
+            <label class="field">Contact email for OpenAlex / Crossref (optional, polite pool)<input type="email" id="set-email" placeholder="you@example.org"></label>
+          </div>
+          <label class="check"><input type="checkbox" id="set-approval"> Require human approval before saving a dossier</label>
+        </fieldset>
+      </div>
+      <div class="dlg-foot">
+        <button class="btn ghost" type="button" id="set-reset">Reset defaults</button>
+        <button class="btn ghost" type="button" id="set-forget">Forget key</button>
+        <button class="btn primary" value="save" id="set-save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ============================== APPROVAL ============================== -->
+  <dialog id="approval-dialog">
+    <div class="dlg-head"><div><h2>Human approval required</h2><div class="muted small" id="appr-sub"></div></div></div>
+    <div class="dlg-body">
+      <dl class="kv"><dt>Tool</dt><dd class="mono" id="appr-tool"></dd><dt>Requested by</dt><dd id="appr-agent"></dd><dt>Why it is gated</dt><dd id="appr-why"></dd></dl>
+      <div class="approval-preview prose" id="appr-preview"></div>
+      <label class="field">Note for the audit trail (optional)<input type="text" id="appr-note" placeholder="Reason for your decision"></label>
+    </div>
+    <div class="dlg-foot">
+      <button class="btn ghost" id="appr-defer" title="Checkpoint the run and decide later from History">Decide later</button>
+      <button class="btn danger" id="appr-reject">Reject</button>
+      <button class="btn primary" id="appr-approve">Approve</button>
+    </div>
+  </dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js" defer></script>
+  <script src="assets/js/schemas.js" defer></script>
+  <script src="assets/js/core.js" defer></script>
+  <script src="assets/js/tools.js" defer></script>
+  <script src="assets/js/agents.js" defer></script>
+  <script src="assets/js/pipeline.js" defer></script>
+  <script src="assets/js/ui.js" defer></script>
+</body>
+</html>
